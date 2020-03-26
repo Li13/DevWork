@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DemandModule } from './Demand/module';
+import { DemandModule } from './demand/demand.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { Demand } from './Demand/model';
+import { Demand } from './demand/demand.entity';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 

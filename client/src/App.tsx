@@ -4,7 +4,6 @@ import { renderRoutes } from "react-router-config";
 import store from "./store";
 import routes from "./router";
 import { HashRouter } from "react-router-dom";
-import "./fix.css";
 
 function App() {
   return (

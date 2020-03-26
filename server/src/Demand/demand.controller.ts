@@ -1,9 +1,9 @@
-import { Controller, UseGuards, Get, Post, Body, Query } from '@nestjs/common';
+import { Controller, UseGuards, Get, Post, Put, Body, Query } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { DemandService } from './service';
-import { Demand } from './model';
+import { DemandService } from './demand.service';
+import { Demand } from './demand.entity';
 
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 @Controller('demand')
 export class DemandController {
   constructor(private readonly demandService: DemandService) {}
@@ -16,5 +16,10 @@ export class DemandController {
   @Get()
   async find(@Query('id') id: string): Promise<Demand> {
     return this.demandService.find(id);
+  }
+
+  @Put()
+  async edit(@Body('id') id: string): Promise<string> {
+    return this.demandService.edit(id)
   }
 }

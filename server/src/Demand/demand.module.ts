@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DemandService } from './service';
-import { DemandController } from './controller';
-import { Demand } from './model';
+import { DemandService } from './demand.service';
+import { DemandController } from './demand.controller';
+import { Demand } from './demand.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Demand])],

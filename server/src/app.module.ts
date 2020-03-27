@@ -1,15 +1,15 @@
-import { Module } from '@nestjs/common';
+import * as redisStore from 'cache-manager-redis-store';
+import { CacheModule, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DemandModule } from './demand/demand.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { Demand } from './demand/demand.entity';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    DemandModule,
+    // CacheModule.register({ store: redisStore, host: 'localhost', port: 6379 }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -17,9 +17,10 @@ import { UsersModule } from './users/users.module';
       username: 'root',
       password: '123456',
       database: 'work_test',
-      entities: [Demand],
+      entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    DemandModule,
     AuthModule,
     UsersModule,
   ],

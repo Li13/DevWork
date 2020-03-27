@@ -9,8 +9,10 @@ import { Request, Response } from 'express';
 function getMessage(exception: HttpException, status: number) {
   if (status === 4003) {
     return '权限不足';
+  } else if (status === 400) {
+    return exception.message.message || '';
   } else {
-    return exception.message.error || exception.message.message || '';
+    return exception.message.message || '';
   }
 }
 
@@ -24,6 +26,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     response.status(status).json({
       success: false,
       statusCode: status,
+      error: exception.message.error,
       message: getMessage(exception, status),
       timestamp: Date.now(),
       path: request.url,

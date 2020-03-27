@@ -1,9 +1,17 @@
-import { Controller, UseGuards, Get, Post, Put, Body, Query } from '@nestjs/common';
+import {
+  Controller,
+  UseGuards,
+  Get,
+  Post,
+  Put,
+  Body,
+  Query,
+} from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { DemandService } from './demand.service';
 import { Demand } from './demand.entity';
 
-// @UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
 @Controller('demand')
 export class DemandController {
   constructor(private readonly demandService: DemandService) {}
@@ -20,6 +28,6 @@ export class DemandController {
 
   @Put()
   async edit(@Body('id') id: string): Promise<string> {
-    return this.demandService.edit(id)
+    return this.demandService.edit(id);
   }
 }

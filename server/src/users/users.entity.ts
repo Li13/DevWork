@@ -1,10 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import {
   IsNotEmpty,
   IsEmail,
   IsPhoneNumber,
   IsOptional,
+  Length,
 } from 'class-validator';
+import { UserDemandRelations } from '../relations/userDemand.entity';
 
 @Entity()
 export class User {
@@ -16,7 +18,8 @@ export class User {
   username: string;
 
   @IsNotEmpty()
-  @Column({ type: 'varchar', length: 16, comment: '密码' })
+  @Length(32, 32)
+  @Column({ type: 'varchar', length: 32, select: false, comment: '密码' })
   password: string;
 
   @IsOptional()
@@ -28,4 +31,10 @@ export class User {
   @IsPhoneNumber('CH')
   @Column({ type: 'varchar', nullable: true, length: 11, comment: '手机号' })
   mobile: string;
+
+  @OneToMany(
+    () => UserDemandRelations,
+    userDemand => userDemand.demand,
+  )
+  userDemand: UserDemandRelations[];
 }

@@ -9,21 +9,26 @@ import {
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { DemandService } from './demand.service';
-import { Demand } from './demand.entity';
+import { Demand, QueryListOptions, QueryListResults } from './demand.entity';
 
 @UseGuards(JwtAuthGuard)
 @Controller('demand')
 export class DemandController {
   constructor(private readonly demandService: DemandService) {}
 
-  @Post('add')
-  async save(@Body() demand: Demand): Promise<string> {
+  @Post()
+  async save(@Body() demand: Demand): Promise<Demand> {
     return this.demandService.add(demand);
   }
 
   @Get()
   async find(@Query('id') id: string): Promise<Demand> {
     return this.demandService.find(id);
+  }
+
+  @Get('list')
+  async findList(@Query() query: QueryListOptions): Promise<QueryListResults> {
+    return this.demandService.findList(query);
   }
 
   @Put()

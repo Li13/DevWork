@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, LazyExoticComponent, ComponentType } from "react";
-import BlankLayout from "../layouts/BlankLayout";
+import { createBrowserHistory } from "history";
+import BlankLayout from "@/layouts/BlankLayout";
 
 const SuspenseComponent = (Component: LazyExoticComponent<ComponentType>) => (props: any) => {
   return (
@@ -9,15 +10,22 @@ const SuspenseComponent = (Component: LazyExoticComponent<ComponentType>) => (pr
   );
 };
 
-const DemandComponent = lazy(() => import("../views/demand"));
+const DemandComponent = lazy(() => import("../pages/demand"));
+const Login = lazy(() => import("../pages/login"));
 
+export const history = createBrowserHistory();
 export default [
   {
     component: BlankLayout,
     routes: [
       {
         path: "/",
+        exact: true,
         component: SuspenseComponent(DemandComponent)
+      },
+      {
+        path: "/login",
+        component: SuspenseComponent(Login)
       }
     ]
   }

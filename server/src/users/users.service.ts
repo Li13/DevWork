@@ -10,8 +10,11 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.userRepository.findOne({ username: username });
+  async findOneOfJWT(username: string): Promise<User | undefined> {
+    return this.userRepository.findOne(
+      { username: username },
+      { select: ['id', 'username', 'password'] },
+    );
   }
 
   async addUser(user: User): Promise<string> {

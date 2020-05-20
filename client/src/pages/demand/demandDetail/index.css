@@ -1,0 +1,9 @@
+.pop-left-detail {
+  width: 700px;
+  position: fixed;
+  /* height: 80%; */
+  right: 0;
+  top: 64px;
+  bottom: 0;
+  border: 1px solid red;
+}

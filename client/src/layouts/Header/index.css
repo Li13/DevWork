@@ -1,0 +1,23 @@
+.ant-layout-header .ant-menu {
+  line-height: inherit;
+}
+
+.glob-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-icon {
+  color: #ffffff;
+  font-size: 28px;
+  vertical-align: middle;
+}
+
+.header-operating {
+  display: flex;
+  padding-top: 14px;
+}
+
+.header-operating-item {
+  margin: 0 6px;
+}

@@ -1,0 +1,37 @@
+.gantt-chart-contain {
+  position: relative;
+  user-select: none;
+}
+
+.gantt-chart-svg {
+  position: absolute;
+}
+
+.gantt-chart-bg-contain {
+  display: flex;
+  position: absolute;
+}
+
+.gantt-chart-bg-item {
+  border: 1px solid #ededed;
+  border-left: none;
+}
+
+.gantt-chart-bg-title {
+  font-size: 14px;
+  text-align: center;
+  font-weight: 700;
+  height: 22px;
+  line-height: 22px;
+  color: #000000;
+  border-bottom: 1px solid #ededed;
+}
+
+.gantt-chart-bg-column {
+  height: 100%;
+}
+
+.btn {
+  position: absolute;
+
+}

@@ -26,14 +26,16 @@ instance.interceptors.response.use(
   (res: AxiosResponse<any>) => res.data,
   err => {
     const res = err.response;
-    const data = res.data;
-    if ((res.status || data.statusCode) === 401) {
-      logout();
-      if (data.path !== "/auth/login") {
-        message.warn("权限不足，请登录后操作");
-        setTimeout(() => {
-          goLogin();
-        }, 800);
+    if (res) {
+      const data = res.data;
+      if ((res.status || data.statusCode) === 401) {
+        logout();
+        if (data.path !== "/auth/login") {
+          message.warn("权限不足，请登录后操作");
+          setTimeout(() => {
+            goLogin();
+          }, 800);
+        }
       }
     }
     return Promise.reject(err);
